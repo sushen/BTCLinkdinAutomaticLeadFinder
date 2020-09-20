@@ -41,7 +41,7 @@ waiting_for_page = 10
 driver.get("https://www.linkedin.com/")
 time.sleep(2)
 try:
-    # I use environment veriable base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
+    # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
     username = os.environ.get('my_Linkdin_username')
     password = os.environ.get('my_Linkdin_password')
 
