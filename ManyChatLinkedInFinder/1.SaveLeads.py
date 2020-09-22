@@ -98,7 +98,7 @@ def main_program():
                                 nm = ls.text
                             # No 3 : Change
                             # You have to change this name for your desired list
-                            if "UNDP" == nm:
+                            if "it farm" == nm:
 
                                 ls.click()
 
@@ -137,14 +137,14 @@ def main_program():
 chrome_options = Options()
 chrome_options.add_argument("--user-data-dir=chrome-data")
 chrome_options.add_argument("--start-maximized")
-driver = webdriver.Chrome("D:\BTCLinkdinAutomaticLeadFinder\chromedriver.exe",chrome_options=chrome_options)
+driver = webdriver.Chrome("../chromedriver.exe",chrome_options=chrome_options)
 chrome_options.add_argument("user-data-dir=chrome-data")
 driver.implicitly_wait(25)  # seconds
 
 
 # No 1 : Change
 # What will be searched
-search_parameter = "undp"
+search_parameter = "it"
 
 # Time waiting for page
 waiting_for_page = 5
