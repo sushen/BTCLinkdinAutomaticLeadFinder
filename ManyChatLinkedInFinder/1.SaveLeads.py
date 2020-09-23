@@ -14,6 +14,7 @@ import time
 from selenium.webdriver.common.action_chains import ActionChains
 import os
 from selenium.webdriver.chrome.options import Options
+from ManyChatLinkedInFinder import user_login
 
 def main_program():
 
@@ -134,58 +135,20 @@ def main_program():
                 # Close the current browser
                 driver.close()
 
-chrome_options = Options()
-chrome_options.add_argument("--user-data-dir=chrome-data")
-chrome_options.add_argument("--start-maximized")
-driver = webdriver.Chrome("../chromedriver.exe",chrome_options=chrome_options)
-chrome_options.add_argument("user-data-dir=chrome-data")
-driver.implicitly_wait(25)  # seconds
+
 
 
 # No 1 : Change
 # What will be searched
 search_parameter = "it"
 
-# Time waiting for page
-waiting_for_page = 5
 
 # Time per user
 time_per_user = 2
 
-driver.get("https://www.linkedin.com/")
-time.sleep(2)
+waiting_for_page = 5
 
-
-# Function to check
-can_login = True
-
-try:
-    us = driver.find_element_by_id("session_key")
-except:
-    can_login = False
-
-
-if can_login:
-    # I use environment veriable base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
-    username = os.environ.get('my_Linkdin_username')
-    password = os.environ.get('my_Linkdin_password')
-
-    driver.find_element_by_id("session_key").send_keys(username)
-    driver.find_element_by_id("session_password").send_keys(password)
-    time.sleep(1)
-
-    driver.find_element_by_class_name("sign-in-form__submit-button").click()
-    time.sleep(waiting_for_page)
-
-
-#Check if he has sales navigator
-bar = driver.find_element_by_class_name("global-nav__primary-items").find_elements_by_tag_name("li")
-
-has_navigator = False
-
-for b in bar:
-    if "Sales" in b.text:
-        has_navigator = True
+has_navigator, driver = user_login.login_func()
 
 if has_navigator:
     main_program()
