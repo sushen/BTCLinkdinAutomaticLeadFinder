@@ -3,8 +3,6 @@ import time
 import os
 from selenium.webdriver.chrome.options import Options
 
-ded = 'ded'
-
 
 def login_func():
     chrome_options = Options()
