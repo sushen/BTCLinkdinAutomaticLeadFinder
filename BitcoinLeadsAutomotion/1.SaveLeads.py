@@ -166,7 +166,7 @@ except:
 
 
 if can_login:
-    # I use environment veriable base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
+    # I use environment variable base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
     username = os.environ.get('my_Linkdin_username')
     password = os.environ.get('my_Linkdin_password')
 
