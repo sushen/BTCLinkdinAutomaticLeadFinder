@@ -148,6 +148,7 @@ time_per_user = 2
 
 waiting_for_page = 5
 
+# Login
 has_navigator, driver = user_login.login_func()
 
 if has_navigator:

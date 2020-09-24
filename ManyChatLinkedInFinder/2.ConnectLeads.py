@@ -14,7 +14,7 @@ import random
 import os
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
-
+from ManyChatLinkedInFinder import user_login
 
 # No 1 : Change
 # Message to send when connecting
@@ -26,33 +26,11 @@ message_to_connect = [
 
 email = "sushenbiswasaga@gmail.com"
 
-
-chrome_options = Options()
-chrome_options.add_argument("--user-data-dir=chrome-data")
-chrome_options.add_argument("--start-maximized")
-driver = webdriver.Chrome("K:\Project\Python\LeadsAutomotionInLinkdIn\chromedriver.exe",chrome_options=chrome_options)
-chrome_options.add_argument("user-data-dir=chrome-data")
-driver.implicitly_wait(15)  # seconds
-# What will be searched
-
 # Time waiting for page
 waiting_for_page = 10
 
-driver.get("https://www.linkedin.com/")
-time.sleep(2)
-try:
-    # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
-    username = os.environ.get('my_Linkdin_username')
-    password = os.environ.get('my_Linkdin_password')
-
-    driver.find_element_by_id("session_key").send_keys(username)
-    driver.find_element_by_id("session_password").send_keys(password)
-    time.sleep(1)
-
-    driver.find_element_by_class_name("sign-in-form__submit-button").click()
-    time.sleep(waiting_for_page)
-except:
-    pass
+# Login
+has_navigator, driver = user_login.login_func()
 
 # No 2 : Change
 # #Replace this with the link of your list
