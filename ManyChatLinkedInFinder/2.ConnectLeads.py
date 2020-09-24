@@ -19,9 +19,9 @@ from ManyChatLinkedInFinder import user_login
 # No 1 : Change
 # Message to send when connecting
 message_to_connect = [
-    "Hello Sir, \nI am serving International Organization for more than three years.\nOur company work in Unicef Somalia (Nairobi based) as a BI(Business Intelligence) Consultant. If you accept my invitation I will be a very glade.",
-    "Hello Sir, \nI am working with UNDP base organization for more than three years.\nOur company work in Unicef Somalia (Nairobi based) as a BI(Business Intelligence) Consultant. If you accept my invitation I will be a very glade.",
-    "Hello Sir, \nI am serving International Diplomate  for more than three years.my office is in Gulshan 2 near the Unicef hartal office.\nOur company work in Unicef Somalia (Nairobi based) as a BI(Business Intelligence) Consultant. If you accept my invitation I will be a very glade."
+    "আপনাকে আইটি রিলেটেড প্রাডাক্ট নিয়ে কাজ করছেন দেখে আপনাকে ম্যাসেজ দিচ্ছি, আমার একটা প্রডাক্ট এবং সার্ভিস আছে যেটা নিয়ে কথা ব্যাবসায়িক কথা বলতে চাই । আপনি কি সময় দেবেন ?",
+    "আমার একটা প্রডাক্ট এবং সার্ভিস আছে যেটা নিয়ে কথা ব্যাবসায়িক কথা বলতে চাই । আপনাকে আইটি রিলেটেড প্রাডাক্ট নিয়ে কাজ করছেন দেখে আপনাকে ম্যাসেজ দিচ্ছি,  আপনি কি সময় দেবেন ?",
+    "আপনাকে আইটি রিলেটেড প্রাডাক্ট নিয়ে কাজ করছেন দেখে আপনাকে ম্যাসেজ দিচ্ছি,আপনি কি সময় দেবেন ? আমার একটা প্রডাক্ট এবং সার্ভিস আছে যেটা নিয়ে কথা ব্যাবসায়িক কথা বলতে চাই । ",
 ]
 
 email = "sushenbiswasaga@gmail.com"
@@ -34,14 +34,24 @@ has_navigator, driver = user_login.login_func()
 
 # No 2 : Change
 # #Replace this with the link of your list
-url = "https://www.linkedin.com/sales/lists/people/6712927356828418048?sortCriteria=CREATED_TIME"
+url = "https://www.linkedin.com/sales/lists/people/6710357981692780544"
 
 driver.get(url)
 time.sleep(waiting_for_page)
 
 
 
-while(True):
+driver.get(url)
+time.sleep(waiting_for_page)
+
+try:
+    pages = int(driver.find_element_by_class_name("search-results__pagination-list").find_elements_by_tag_name("li")[
+                    -1].text.split("…")[-1])
+except:
+    pages = 1
+
+#TODO: Make a Massage Sending Function
+for i in range(pages):
 
     people = driver.find_element_by_tag_name("table").find_elements_by_tag_name("tr")
     people = people[1:]
@@ -85,16 +95,18 @@ while(True):
 
             time.sleep(2)
 
+        driver.find_element_by_id("content-main").click()
 
         aux_count += 80
-    # TODO: Fixed the pasination
 
-    try:
-        driver.find_element_by_class_name("artdeco-pagination__button--next").click()
-    except:
-        break
+        # TODO: Fixed the pasination
 
-    time.sleep(10)
+        try:
+            driver.find_element_by_class_name("artdeco-pagination__button").click()
+        except:
+            break
+
+        time.sleep(10)
 
 
 # TODO: Test that in 3.2.ShuffleScriptSlowLinkdinUNDPUserList.py
